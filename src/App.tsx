@@ -11,7 +11,13 @@ function App() {
   useEffect(() => {
     const savedTrips = localStorage.getItem('travelSplitTrips');
     if (savedTrips) {
-      setTrips(JSON.parse(savedTrips));
+      try {
+        setTrips(JSON.parse(savedTrips));
+      } catch (error) {
+        console.error('Failed to parse saved trips:', error);
+        localStorage.removeItem('travelSplitTrips');
+        setTrips([]);
+      }
     }
   }, []);
 
@@ -23,7 +29,7 @@ function App() {
   const handleCreateTrip = (tripData: Omit<Trip, 'id'>) => {
     const newTrip: Trip = {
       ...tripData,
-      id: Math.random().toString(36).substr(2, 9)
+      id: Math.random().toString(36).substring(2, 11)
     };
     setTrips(prev => [...prev, newTrip]);
   };

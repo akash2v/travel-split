@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Plus, Users, IndianRupee, Receipt, Calculator, User, Calendar, CreditCard as Edit, UserPlus, Settings } from 'lucide-react';
+import { ArrowLeft, Plus, Users, IndianRupee, Receipt, Calculator, User, Calendar, CreditCard as Edit, UserPlus, Settings, Trash2 } from 'lucide-react';
 import { Trip, Expense, Member } from '../types';
 import ExpenseModal from './ExpenseModal';
 import SettlementModal from './SettlementModal';
@@ -103,52 +103,52 @@ const TripDetails: React.FC<TripDetailsProps> = ({ trip, onBack, onUpdateTrip })
       <header className="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-40">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-4 min-w-0">
               <button
                 onClick={onBack}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200"
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200 flex-shrink-0"
               >
                 <ArrowLeft className="h-6 w-6 text-gray-600" />
               </button>
-              <h1 className="text-2xl font-bold text-gray-900">{trip.title}</h1>
+              <h1 className="text-lg sm:text-2xl font-bold text-gray-900 truncate">{trip.title}</h1>
               {trip.isActive && (
-                <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
+                <span className="bg-green-100 text-green-800 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium flex-shrink-0">
                   Active
                 </span>
               )}
             </div>
-            <div className="flex space-x-3">
+            <div className="flex items-center space-x-1 sm:space-x-2 lg:space-x-3">
               {trip.isActive && (
                 <>
                   <button
                     onClick={() => setShowAddMemberModal(true)}
-                    className="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition-all duration-200 flex items-center space-x-2"
+                    className="bg-teal-600 text-white p-2 sm:px-3 sm:py-2 lg:px-4 lg:py-2 rounded-lg hover:bg-teal-700 transition-all duration-200 flex items-center space-x-0 sm:space-x-2"
                   >
-                    <UserPlus className="h-5 w-5" />
-                    <span>Add Member</span>
+                    <UserPlus className="h-4 w-4 sm:h-5 sm:w-5" />
+                    <span className="hidden sm:inline">Add Member</span>
                   </button>
                   <button
                     onClick={() => setShowExpenseModal(true)}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-all duration-200 flex items-center space-x-2"
+                    className="bg-blue-600 text-white p-2 sm:px-3 sm:py-2 lg:px-4 lg:py-2 rounded-lg hover:bg-blue-700 transition-all duration-200 flex items-center space-x-0 sm:space-x-2"
                   >
-                    <Plus className="h-5 w-5" />
-                    <span>Add Expense</span>
+                    <Plus className="h-4 w-4 sm:h-5 sm:w-5" />
+                    <span className="hidden sm:inline">Add Expense</span>
                   </button>
                 </>
               )}
               <button
                 onClick={() => setShowEditModal(true)}
-                className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-all duration-200 flex items-center space-x-2"
+                className="bg-gray-600 text-white p-2 sm:px-3 sm:py-2 lg:px-4 lg:py-2 rounded-lg hover:bg-gray-700 transition-all duration-200 flex items-center space-x-0 sm:space-x-2"
               >
-                <Edit className="h-5 w-5" />
-                <span>Edit Trip</span>
+                <Edit className="h-4 w-4 sm:h-5 sm:w-5" />
+                <span className="hidden lg:inline">Edit Trip</span>
               </button>
               <button
                 onClick={() => setShowSettlementModal(true)}
-                className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-all duration-200 flex items-center space-x-2"
+                className="bg-orange-600 text-white p-2 sm:px-3 sm:py-2 lg:px-4 lg:py-2 rounded-lg hover:bg-orange-700 transition-all duration-200 flex items-center space-x-0 sm:space-x-2"
               >
-                <Calculator className="h-5 w-5" />
-                <span>Settlement</span>
+                <Calculator className="h-4 w-4 sm:h-5 sm:w-5" />
+                <span className="hidden lg:inline">Settlement</span>
               </button>
             </div>
           </div>
@@ -220,7 +220,7 @@ const TripDetails: React.FC<TripDetailsProps> = ({ trip, onBack, onUpdateTrip })
       {/* Navigation Tabs */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <div className="bg-white rounded-2xl p-2 shadow-lg">
-          <div className="flex space-x-2">
+          <div className="flex space-x-1 sm:space-x-2">
             {[
               { id: 'overview', label: 'Overview', icon: Receipt },
               { id: 'expenses', label: 'Expenses', icon: IndianRupee },
@@ -229,14 +229,14 @@ const TripDetails: React.FC<TripDetailsProps> = ({ trip, onBack, onUpdateTrip })
               <button
                 key={id}
                 onClick={() => setActiveTab(id as any)}
-                className={`flex-1 flex items-center justify-center space-x-2 py-3 px-4 rounded-xl font-medium transition-all duration-200 ${
+                className={`flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-2 sm:py-3 px-2 sm:px-4 rounded-xl font-medium transition-all duration-200 text-sm sm:text-base ${
                   activeTab === id
                     ? 'bg-blue-600 text-white shadow-lg'
                     : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
-                <Icon className="h-5 w-5" />
-                <span>{label}</span>
+                <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
+                <span className="hidden xs:inline">{label}</span>
               </button>
             ))}
           </div>
