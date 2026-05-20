@@ -4,6 +4,12 @@ A dynamic travel management app that simplifies expense tracking and splitting f
 
 **Live Demo:** [tra-split.vercel.app](https://tra-split.vercel.app/)
 
+
+
+https://github.com/user-attachments/assets/4c2a11b0-c45d-4ac1-b08f-d475b7481683
+
+
+
 ## ✨ Features
 
 ### 💼 Trip Management
